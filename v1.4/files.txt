@@ -1,0 +1,35 @@
+*video time (display)*
+
+videoTime (video) => {
+    var currentTime = video.currentTime,
+        duration = video.duration;
+
+    var currentMins = Math.floor(currentTime / 60),
+        currentSecs = Math.floor(currentTime - currentMins * 60),
+        durationMins = Math.floor(duration / 60),
+        durationSecs = Math.floor(duration - durationMins * 60);
+
+    if (currentMins < 10) currentMins = "0" + currentMins;
+    if (currentSecs < 10) currentSecs = "0" + currentSecs;
+    if (durationMins < 10) durationMins = "0" + durationMins;
+    if (durationSecs < 10) durationSecs = "0" + durationSecs;
+
+    return (
+        `${currentMins} : ${currentSecs} / ${durationMins} : ${durationSecs}`
+    );
+}
+
+
+
+*Load all functions in a class (constructor)*
+
+// define functions
+const proto = Object.getPrototypeOf(this);
+const names = Object.getOwnPropertyNames(proto);
+const buttonFunctions = names.filter(name => name != 'constructor' && !name.toLowerCase().includes('_'));
+
+// define buttons
+var functions = [];
+buttonFunctions.forEach(f => functions.push(this[f]()));
+
+
