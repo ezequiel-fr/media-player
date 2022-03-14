@@ -102,3 +102,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Video files (only locale).
+*.ts
+
+# favicon (generated only for live server) => empty file
+favicon.ico
