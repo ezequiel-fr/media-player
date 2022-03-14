@@ -35,7 +35,8 @@ const _keyEventsSwitch = (e) => {
  */
 
 export const keyEvents = () => {
-    return document.onkeyup = (e) => {
-        console.log(_keyEventsSwitch(e));
-    }
+    // define events
+    document.onkeyup = (e) => _keyEventsSwitch(e);
+
+    // 
 };
