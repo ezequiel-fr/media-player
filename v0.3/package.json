@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "ci": "^2.1.1",
+    "hls.js": "^1.1.5",
+    "require": "^0.4.4",
+    "require.js": "^1.0.0"
+  }
+}
