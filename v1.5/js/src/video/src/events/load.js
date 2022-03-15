@@ -18,5 +18,5 @@ export const videoLoading = (video) => {
  */
 
 export const videoFullscreenHandling = (video) => {
-    // 
+    console.log(video);
 };
