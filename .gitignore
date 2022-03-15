@@ -103,6 +103,9 @@ dist
 # TernJS port file
 .tern-port
 
+# Visual Studio Code files
+.vscode/
+
 # Video files (only locale).
 *.ts
 
