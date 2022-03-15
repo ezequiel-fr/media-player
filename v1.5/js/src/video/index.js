@@ -38,7 +38,7 @@ export default class VideoControllers extends VideoControllerElements
                 video.removeAttribute('controls');
                 video.style.pointerEvents = 'none';
             }
-        }, 5000);
+        }, 2000);
     }
 
 

@@ -1,18 +1,31 @@
-import eventsTypes from '../constants/eventsTypes.js';
+import Actions from '../actions/index.js';
+import * as eventsTypes from '../constants/eventsTypes.js';
 
 
 /**
- * Return the event.
+ * Return the event (only with `onkeydown` event).
  * @param {KeyboardEvent} e 
  */
 
-const _keyEventsSwitch = (e) => {
+const _keyEventsSwitch_a = (e) => {
     switch (e.keyCode) {
-        case 32: return eventsTypes.PLAY_OR_PAUSE;
         case 37: return eventsTypes.VIDEO_BACKWARD;
         case 38: return eventsTypes.VOLUME_UP;
         case 39: return eventsTypes.VIDEO_FRONTWARD;
         case 40: return eventsTypes.VOLUME_DOWN;
+        default: return null;
+    }
+};
+
+
+/**
+ * Return the event (only with `onkeyup` event).
+ * @param {KeyboardEvent} e 
+ */
+
+ const _keyEventsSwitch_b = (e) => {
+    switch (e.keyCode) {
+        case 32: return eventsTypes.PLAY_OR_PAUSE;
         case 70: return eventsTypes.TOGGLE_FULLSCREEN_MODE;
         case 48: case 96: return eventsTypes.CHAPTER_0;
         case 49: case 97: return eventsTypes.CHAPTER_1;
@@ -30,13 +43,22 @@ const _keyEventsSwitch = (e) => {
 
 
 /**
- * Add key events for the video player.
- * @returns {void}
+ * Do an action when a specific key is pressed.
+ * @returns {never}
  */
 
-export const keyEvents = () => {
-    // define events
-    document.onkeyup = (e) => _keyEventsSwitch(e);
+export const keyEvents = function () {
+    document.onkeydown = (e) => {
+        const action = _keyEventsSwitch_a(e);
+        return (null === action ? void 0 : Actions(action));
+    };
 
-    // 
+    document.onkeyup = (e) => {
+        const action = _keyEventsSwitch_b(e);
+        return (null === action ? void 0 : Actions(action));
+    };
+
+    // only for test
+    // document.addEventListener('keyup', (e) => console.log(e));
+    // document.addEventListener('keypress', (e) => console.log(e));
 };
