@@ -5,6 +5,7 @@ import {
     VOLUME_UP
 } from '../constants/eventsTypes.js';
 
+
 /**
  * @param {String} action
  * @returns {void|null|string|boolean}
@@ -19,13 +20,14 @@ export default (action) => {
             return __video[__video.paused ? 'play' : 'pause']();
 
         case TOGGLE_FULLSCREEN_MODE:
-            try {
-                return __video.requestFullscreen();
-            } catch {
-                if (__video.webkitSupportsFullscreen) {
-                    return __video.webkitEnterFullscreen();
+            if (!__video.fullscreenElement) {
+                __video.documentElement.requestFullscreen();
+            } else {
+                if (__video.exitFullscreen) {
+                    __video.exitFullscreen();
                 }
             }
+            break;
 
         case VOLUME_UP:
             return __video.volume += 10;
