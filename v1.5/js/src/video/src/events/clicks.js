@@ -26,7 +26,7 @@ const _keyEventsSwitch_a = (e) => {
  const _keyEventsSwitch_b = (e) => {
     switch (e.keyCode) {
         case 32: return eventsTypes.PLAY_OR_PAUSE;
-        case 70: return eventsTypes.TOGGLE_FULLSCREEN_MODE;
+        // case 70: return eventsTypes.TOGGLE_FULLSCREEN_MODE;
         case 48: case 96: return eventsTypes.CHAPTER_0;
         case 49: case 97: return eventsTypes.CHAPTER_1;
         case 50: case 98: return eventsTypes.CHAPTER_2;
