@@ -17,6 +17,4 @@ export const videoLoading = (video) => {
  * @param {HTMLVideoElement} video
  */
 
-export const videoFullscreenHandling = (video) => {
-    console.log(video);
-};
+export const videoFullscreenHandling = (video) => video.dataset.fullscreen = 0;
