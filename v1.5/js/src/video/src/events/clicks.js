@@ -23,7 +23,7 @@ const _keyEventsSwitch_a = (e) => {
  * @param {KeyboardEvent} e 
  */
 
- const _keyEventsSwitch_b = (e) => {
+const _keyEventsSwitch_b = (e) => {
     switch (e.keyCode) {
         case 32: return eventsTypes.PLAY_OR_PAUSE;
         case 70: return eventsTypes.TOGGLE_FULLSCREEN_MODE;
