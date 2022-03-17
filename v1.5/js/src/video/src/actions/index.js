@@ -1,11 +1,9 @@
 import {
-    CHAPTER_0, CHAPTER_1,
-    CHAPTER_2, CHAPTER_3,
-    CHAPTER_4, CHAPTER_5,
-    CHAPTER_6, CHAPTER_7,
-    CHAPTER_8, CHAPTER_9,
-    PLAY_OR_PAUSE, TOGGLE_FULLSCREEN_MODE, 
-    VOLUME_DOWN, VOLUME_UP
+    CHAPTER,
+    PLAY_OR_PAUSE,
+    TOGGLE_FULLSCREEN_MODE, 
+    VOLUME_DOWN,
+    VOLUME_UP
 } from '../constants/eventsTypes.js';
 
 
@@ -53,11 +51,7 @@ export default (action) => {
         case VOLUME_DOWN:
             return __video.volume -= 10;
 
-        case CHAPTER_0[0]: case CHAPTER_1[0]:
-        case CHAPTER_2[0]: case CHAPTER_3[0]:
-        case CHAPTER_4[0]: case CHAPTER_5[0]:
-        case CHAPTER_6[0]: case CHAPTER_7[0]:
-        case CHAPTER_8[0]: case CHAPTER_9[0]:
+        case CHAPTER:
             return __video.currentTime = __video.duration / 10 * action[1];
         
         default: return;
