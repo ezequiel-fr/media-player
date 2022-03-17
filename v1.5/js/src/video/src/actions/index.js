@@ -20,13 +20,18 @@ export default (action) => {
             return __video[__video.paused ? 'play' : 'pause']();
 
         case TOGGLE_FULLSCREEN_MODE:
-            if (!__video.fullscreenElement) {
-                __video.documentElement.requestFullscreen();
-            } else {
-                if (__video.exitFullscreen) {
-                    __video.exitFullscreen();
+            var requestMethod = __video.requestFullScreen || __video.webkitRequestFullScreen || __video.mozRequestFullScreen || __video.msRequestFullScreen;
+            
+            if (requestMethod) {
+                requestMethod.call(__video);
+            } else if (typeof window.ActiveXObject !== 'undefined') {
+                var wscript = new ActiveXObject("WScript.Shell");
+                
+                if (null !== wscript) {
+                    wscript.SendKeys("{F11}");
                 }
             }
+            
             break;
 
         case VOLUME_UP:
