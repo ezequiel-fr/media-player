@@ -14,10 +14,12 @@ export default class VideoControllers extends VideoControllerElements
         super();
 
         this.video = video;
-        this.controlsRemover(video);
+        video.classList.add('videoPlayer');
+        // this.controlsRemover(video);
 
-        this.load();
+        this.loadBuilds();
         this.prepareVideoContainer();
+        this.loadEvents();
     }
 
 
@@ -43,14 +45,17 @@ export default class VideoControllers extends VideoControllerElements
 
 
     /**
+     * Load entire classes and build dependencies.
+     */
+
+    loadBuilds = () => this.builds = VideoControllerBuildDependecies;
+    
+
+    /**
      * Load entire classes and events.
      */
 
-    load() {
-        this.events = new videoControllerEvents(this.video);
-        this.builds = VideoControllerBuildDependecies;
-    }
-
+     loadEvents = () => this.events = new videoControllerEvents(this.video);
 
     /**
      * Add basic components and create the box that will

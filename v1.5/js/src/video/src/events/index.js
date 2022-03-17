@@ -1,16 +1,15 @@
-import { keyEvents } from './clicks.js';
+import { keyEvents, videoClickEvents, videoSaveTime } from './clicks.js';
 import { videoFullscreenHandling, videoLoading } from './load.js';
 
 export default class videoControllerEvents
 {
     /**
      * @param {HTMLVideoElement} video
-     * @return 
      */
 
     constructor (video) {
         this.video = video;
-        return this.load();
+        this.load();
     }
 
 
@@ -22,7 +21,10 @@ export default class videoControllerEvents
         videoLoading(this.video);
         videoFullscreenHandling(this.video);
 
+        videoSaveTime(this.video);
+
         keyEvents();
+        videoClickEvents(this.video);
     }
 
 }

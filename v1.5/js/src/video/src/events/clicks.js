@@ -3,8 +3,36 @@ import * as eventsTypes from '../constants/eventsTypes.js';
 
 
 /**
+ * @param {HTMLVideoElement} video
+ */
+
+export const videoSaveTime = (video) => {
+    // const updateTime = () => localStorage.setItem('time', video.currentTime / video.duration * 100);
+
+    // localStorage.setItem('time', 0);
+    // video.addEventListener('timeupdate', updateTime);
+};
+
+
+/**
+ * Add play and pause API to the video when clicked.
+ * @param {HTMLVideoElement} video
+ */
+
+export const videoClickEvents = (video) => {
+    const interval = setInterval(() => {
+        if (video.parentElement.classList.contains('player-video')) {
+            video.onclick = () => Actions(eventsTypes.PLAY_OR_PAUSE);
+            clearInterval(interval);
+        }
+    }, 100);
+};
+
+
+/**
  * Return the event (only with `onkeydown` event).
- * @param {KeyboardEvent} e 
+ * @param {KeyboardEvent} e the event to test.
+ * @returns {String|Array} the action.
  */
 
 const _keyEventsSwitch_a = (e) => {
@@ -20,7 +48,8 @@ const _keyEventsSwitch_a = (e) => {
 
 /**
  * Return the event (only with `onkeyup` event).
- * @param {KeyboardEvent} e 
+ * @param {KeyboardEvent} e the event to test.
+ * @returns {String|Array} the action.
  */
 
 const _keyEventsSwitch_b = (e) => {
