@@ -20,18 +20,26 @@ export default (action) => {
             return __video[__video.paused ? 'play' : 'pause']();
 
         case TOGGLE_FULLSCREEN_MODE:
-            var requestMethod = __video.requestFullScreen || __video.webkitRequestFullScreen || __video.mozRequestFullScreen || __video.msRequestFullScreen;
+            var isFullscreen = new Boolean(true === (document.fullscreenElement && document.fullscreenElement.nodeName == 'VIDEO'));
 
-            if (true === (document.fullscreenElement && document.fullscreenElement.nodeName == 'VIDEO')) {
-                // 
-            } else {
-                if (requestMethod) {
-                    requestMethod.call(__video);
-                } else if (typeof window.ActiveXObject !== 'undefined') {
-                    // old versions
-                    var wscript = new ActiveXObject("WScript.Shell");
-                    if (null !== wscript) wscript.SendKeys("f");
+            __video.dataset.fullscreen = isFullscreen.toString();
+
+            if (__video.dataset.fullscreen == 'true') {
+                try {
+                    document.exitFullscreen();
+                } catch {
+                    var requestMethod = __video.exitFullScreen || __video.webkitExitFullScreen || __video.mozExitFullScreen || __video.msExitFullScreen;
                 }
+            } else {
+                var requestMethod = __video.requestFullScreen || __video.webkitRequestFullScreen || __video.mozRequestFullScreen || __video.msRequestFullScreen;
+            }
+                                
+            if (requestMethod) {
+                requestMethod.call(__video);
+            } else if (typeof window.ActiveXObject !== 'undefined') {
+                // old versions
+                var wscript = new ActiveXObject("WScript.Shell");
+                if (null !== wscript) wscript.SendKeys("{F11}");
             }
 
             break;
