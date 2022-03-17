@@ -22,14 +22,16 @@ export default (action) => {
         case TOGGLE_FULLSCREEN_MODE:
             var requestMethod = __video.requestFullScreen || __video.webkitRequestFullScreen || __video.mozRequestFullScreen || __video.msRequestFullScreen;
 
-            console.log(__video);
-
-            if (requestMethod) {
-                requestMethod.call(__video);
-            } else if (typeof window.ActiveXObject !== 'undefined') {
-                // old versions
-                var wscript = new ActiveXObject("WScript.Shell");
-                if (null !== wscript) wscript.SendKeys("f");
+            if (true === (document.fullscreenElement && document.fullscreenElement.nodeName == 'VIDEO')) {
+                // 
+            } else {
+                if (requestMethod) {
+                    requestMethod.call(__video);
+                } else if (typeof window.ActiveXObject !== 'undefined') {
+                    // old versions
+                    var wscript = new ActiveXObject("WScript.Shell");
+                    if (null !== wscript) wscript.SendKeys("f");
+                }
             }
 
             break;
