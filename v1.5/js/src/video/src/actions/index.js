@@ -28,10 +28,10 @@ export default (action) => {
                 var wscript = new ActiveXObject("WScript.Shell");
                 
                 if (null !== wscript) {
-                    wscript.SendKeys("{F11}");
+                    wscript.SendKeys("{f}");
                 }
             }
-            
+
             break;
 
         case VOLUME_UP:
