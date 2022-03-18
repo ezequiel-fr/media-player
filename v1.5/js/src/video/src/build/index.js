@@ -1,5 +1,5 @@
 
-export default ({
+var Builds = Object ({
 
     /**
      * Put element into a div. You can add a `br` tag if you need.
@@ -61,7 +61,7 @@ export default ({
      */
 
     buttonPattern: (name, innerValues = []) => {
-        const element = elementPattern('button', name, 'btn');
+        const element = Builds.elementPattern('button', name, 'btn');
 
         if (typeof innerValues === "string") {
             element.innerText = innerValues;
@@ -109,3 +109,5 @@ export default ({
         return inputRange;
     }
 });
+
+export default Builds;

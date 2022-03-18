@@ -1,4 +1,3 @@
-import VideoControllerBuildDependecies from './src/build/index.js';
 import VideoControllerElements from './src/elements.js';
 import videoControllerEvents from './src/events/index.js';
 
@@ -11,15 +10,17 @@ export default class VideoControllers extends VideoControllerElements
      */
 
     constructor(video) {
-        super();
+        super(video);
 
         this.video = video;
         video.classList.add('videoPlayer');
         // this.controlsRemover(video); // desactives the video click event
 
-        this.loadBuilds();
         this.prepareVideoContainer();
         this.loadEvents();
+
+        // buttons (test version)
+        this.playButton();
     }
 
 
@@ -42,13 +43,6 @@ export default class VideoControllers extends VideoControllerElements
             }
         }, 2000);
     }
-
-
-    /**
-     * Load entire classes and build dependencies.
-     */
-
-    loadBuilds = () => this.builds = VideoControllerBuildDependecies;
     
 
     /**
