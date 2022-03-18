@@ -1,4 +1,5 @@
 import Actions from '../actions/index.js';
+import { setCookie } from '../build/cookies.js';
 import * as eventsTypes from '../constants/eventsTypes.js';
 
 
@@ -7,9 +8,9 @@ import * as eventsTypes from '../constants/eventsTypes.js';
  */
 
 export const videoSaveTime = (video) => {
-    const updateTime = () => localStorage.setItem('time', video.currentTime / video.duration * 100);
+    const updateTime = () => setCookie('time', Math.round(video.currentTime / video.duration * 1e5) / 1e3);
 
-    localStorage.setItem('time', 0);
+    setCookie('time', 0);
     video.addEventListener('timeupdate', updateTime);
 };
 
