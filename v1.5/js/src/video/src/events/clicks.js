@@ -7,10 +7,10 @@ import * as eventsTypes from '../constants/eventsTypes.js';
  */
 
 export const videoSaveTime = (video) => {
-    // const updateTime = () => localStorage.setItem('time', video.currentTime / video.duration * 100);
+    const updateTime = () => localStorage.setItem('time', video.currentTime / video.duration * 100);
 
-    // localStorage.setItem('time', 0);
-    // video.addEventListener('timeupdate', updateTime);
+    localStorage.setItem('time', 0);
+    video.addEventListener('timeupdate', updateTime);
 };
 
 
