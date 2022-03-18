@@ -1,17 +1,31 @@
 import Actions from '../actions/index.js';
-import { setCookie } from '../build/cookies.js';
+import { getCookie, setCookie } from '../build/cookies.js';
 import * as eventsTypes from '../constants/eventsTypes.js';
 
 
 /**
+ * Set the time and save it in a cookie.
  * @param {HTMLVideoElement} video
  */
 
 export const videoSaveTime = (video) => {
-    const updateTime = () => setCookie('time', Math.round(video.currentTime / video.duration * 1e5) / 1e3);
+    const updateTime = () => setCookie('videoPlayer_time', Math.round(video.currentTime / video.duration * 1e5) / 1e3);
+    var update = 0;
 
-    setCookie('time', 0);
-    video.addEventListener('timeupdate', updateTime);
+    const videoSaveTimeInterval = setInterval(() => { // wait while video box load
+        if (video.parentElement.classList.contains('player-video')) {
+            const time = getCookie('videoPlayer_time');
+            update = setInterval(updateTime, 100);
+    
+            if (null == time) {
+                setCookie('videoPlayer_time', 0);
+            } else {
+                video.currentTime = video.duration * Number(time) / 100;
+            }
+
+            clearInterval(videoSaveTimeInterval);
+        }
+    }, 100);
 };
 
 
@@ -21,10 +35,10 @@ export const videoSaveTime = (video) => {
  */
 
 export const videoClickEvents = (video) => {
-    const interval = setInterval(() => {
+    const videoClickEventsEnterval = setInterval(() => { // wait while video box load
         if (video.parentElement.classList.contains('player-video')) {
             video.onclick = () => Actions(eventsTypes.PLAY_OR_PAUSE);
-            clearInterval(interval);
+            clearInterval(videoClickEventsEnterval);
         }
     }, 100);
 };

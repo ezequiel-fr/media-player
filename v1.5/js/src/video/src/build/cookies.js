@@ -12,3 +12,28 @@ export function setCookie(name, value) {
     date.setTime(date.getTime() + 3600);
     document.cookie = `${name}=${value};${date.toUTCString()};path=/`;
 }
+
+
+/**
+ * Get cookie value
+ * 
+ * @param {String} name the name of the cookie
+ * @returns {String} response
+ */
+
+export function getCookie(name) {
+    name += "=";
+
+    var a = decodeURIComponent(document.cookie).split(';');
+
+    for (let i = 0; i < a.length; i++) {
+        var cookie = a[i];
+        while (cookie.charAt(0) === ' ') cookie = cookie.substring(1);
+
+        if (cookie.indexOf(name) == 0) {
+            return cookie.substring(name.length, cookie.length);
+        }
+    }
+
+    return 'null';
+}

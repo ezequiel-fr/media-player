@@ -15,7 +15,7 @@ export default class VideoControllers extends VideoControllerElements
 
         this.video = video;
         video.classList.add('videoPlayer');
-        // this.controlsRemover(video);
+        // this.controlsRemover(video); // desactives the video click event
 
         this.loadBuilds();
         this.prepareVideoContainer();
