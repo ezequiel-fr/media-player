@@ -6,7 +6,7 @@
  * @param {String} value his value.
  */
 
-export function setCookie(name, value) {
+export function setCookie (name, value) {
     const date = new Date();
     
     date.setTime(date.getTime() + 3600);
@@ -21,7 +21,7 @@ export function setCookie(name, value) {
  * @returns {String} response
  */
 
-export function getCookie(name) {
+export function getCookie (name) {
     name += "=";
 
     var a = decodeURIComponent(document.cookie).split(';');
@@ -37,3 +37,15 @@ export function getCookie(name) {
 
     return 'null';
 }
+
+
+/**
+ * Remove cookie.
+ * 
+ * @param {String} name
+ * @returns {Boolean} is success
+ */
+
+export function deleteCookie (name) {
+    // 
+}; 
