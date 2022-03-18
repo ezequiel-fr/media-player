@@ -46,13 +46,13 @@ export default (action) => {
             break;
 
         case VOLUME_UP:
-            return __video.volume += 10;
+            return __video.volume += 5e-2;
 
         case VOLUME_DOWN:
-            return __video.volume -= 10;
+            return __video.volume -= 5e-2;
 
         case CHAPTER:
-            return __video.currentTime = __video.duration / 10 * action[1];
+            return __video.currentTime = Math.round(__video.duration / 10 * action[1]);
         
         default: return;
     }
