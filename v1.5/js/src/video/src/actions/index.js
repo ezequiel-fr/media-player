@@ -1,9 +1,8 @@
 import {
-    CHAPTER,
-    PLAY_OR_PAUSE,
+    CHAPTER, PLAY_OR_PAUSE,
     TOGGLE_FULLSCREEN_MODE, 
-    VOLUME_DOWN,
-    VOLUME_UP
+    VIDEO_BACKWARD, VIDEO_FRONTWARD, 
+    VOLUME_DOWN, VOLUME_UP
 } from '../constants/eventsTypes.js';
 
 
@@ -44,6 +43,12 @@ export default (action) => {
             __video.dataset.fullscreen = true == __video.dataset.fullscreen ? 0 : 1;
 
             break;
+
+        case VIDEO_FRONTWARD:
+            return __video.currentTime += 10;
+
+        case VIDEO_BACKWARD:
+            return __video.currentTime -= 10;
 
         case VOLUME_UP:
             return __video.volume += 5e-2;
