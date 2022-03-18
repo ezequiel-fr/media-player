@@ -55,7 +55,7 @@ export default class VideoControllers extends VideoControllerElements
      * Load entire classes and events.
      */
 
-     loadEvents = () => this.events = new videoControllerEvents(this.video);
+    loadEvents = () => this.events = new videoControllerEvents(this.video);
 
     /**
      * Add basic components and create the box that will
