@@ -1,4 +1,20 @@
-import VideoControllerBuildDependecies from './build/index.js';
+import Builds from './build/index.js';
+
+
+/**
+ * Toogle inner content of an element by his alternate value.
+ * @param {HTMLElement} el the element.
+ */
+const replaceInnerValue = (el) => {
+    if (el.hasChildNodes() && el.firstChild == el.lastChild) {
+        el = el.firstChild;
+    }
+
+    const oldValue = el.innerHTML;
+    
+    el.innerHTML = el.dataset.alternateValue;
+    el.dataset.alternateValue = oldValue;
+}
 
 
 /**
@@ -13,7 +29,8 @@ export default class VideoControllerElements
      */
 
     constructor() {
-        this.loadBuilds();
+        /** * Load entire classes and build dependencies. */
+        this.builds = Builds;
     }
 
 
@@ -26,23 +43,33 @@ export default class VideoControllerElements
 
 
     /**
-     * Load entire classes and build dependencies.
-     */
-
-    loadBuilds = () => this.builds = VideoControllerBuildDependecies;
-
-     
-    /**
      * Play/Pause button
      */
 
-     playButton() {
-        var btn = this.builds.buttonPattern (
+    playButton() {
+        var btn = this.builds.buttonPattern(
             this.nameBtnPattern('play'),
             ['Play', 'Pause']
         );
 
-        console.log(btn);
+        btn = this.builds.boxing(btn);
+        btn.classList.add('videoPlayer-component', 'btn');
+
+        // set api
+        btn.addEventListener('click', function () {
+            const method = __video.paused ? 'play' : 'pause';
+            
+            btn.dataset.status = method;
+            __video[method]();
+        });
+
+        // change content
+        this.video.addEventListener('play', () => replaceInnerValue(btn));
+        this.video.addEventListener('pause', () => replaceInnerValue(btn));
+
+        replaceInnerValue(btn);
+
+        return this.box.appendChild(btn);
     }
 
 }

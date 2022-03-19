@@ -1,5 +1,5 @@
 
-var Builds = Object ({
+const Builds = ({
 
     /**
      * Put element into a div. You can add a `br` tag if you need.
@@ -97,7 +97,7 @@ var Builds = Object ({
      */
 
     rangePattern: (name, step = 1, defaultValue = 0) => {
-        const inputRange = elementPattern('input', name);
+        const inputRange = Builds.elementPattern('input', name);
 
         inputRange.setAttribute('type', 'range');
         inputRange.setAttribute('max', '100');

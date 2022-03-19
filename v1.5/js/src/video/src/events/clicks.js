@@ -20,7 +20,8 @@ export const videoSaveTime = (video) => {
             if (null == time) {
                 setCookie('videoPlayer_time', 0);
             } else {
-                video.currentTime = video.duration * Number(time) / 100;
+                try { video.currentTime = video.duration * Number(time) / 100; }
+                catch { console.clear(); }
             }
 
             clearInterval(videoSaveTimeInterval);

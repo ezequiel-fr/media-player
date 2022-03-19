@@ -10,7 +10,7 @@ export default class VideoControllers extends VideoControllerElements
      */
 
     constructor(video) {
-        super(video);
+        super();
 
         this.video = video;
         video.classList.add('videoPlayer');
@@ -59,6 +59,7 @@ export default class VideoControllers extends VideoControllerElements
     prepareVideoContainer() {
         this.box = this.builds.boxing(this.video, true);
         this.box.className = "player-video";
+        this.box.style.minWidth = 'min-content';
     }
 
 }
