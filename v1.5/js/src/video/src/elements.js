@@ -23,7 +23,6 @@ const replaceInnerValue = (el) => {
 
 export default class VideoControllerElements
 {
-
     /**
      * Construct
      */

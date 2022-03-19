@@ -26,10 +26,10 @@ export default class VideoControllers extends VideoControllerElements
 
     /**
      * Disable full controls of video and include the possibility
-     * that somronr try to add manually controls.
+     * that someone try to add manually controls.
      * 
      * @param {HTMLVideoElement} video
-     * @return {number}
+     * @returns {number}
      */
 
     controlsRemover(video) {
