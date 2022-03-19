@@ -5,6 +5,7 @@ import Builds from './build/index.js';
  * Toogle inner content of an element by his alternate value.
  * @param {HTMLElement} el the element.
  */
+
 const replaceInnerValue = (el) => {
     if (el.hasChildNodes() && el.firstChild == el.lastChild) {
         el = el.firstChild;
@@ -42,17 +43,32 @@ export default class VideoControllerElements
 
 
     /**
+     * @param {String} name
+     * @param {String|Array} innerValues
+     * 
+     * @returns {HTMLButtonElement}
+     */
+
+    btnPattern (name, innerValues) {
+        var btn = this.builds.buttonPattern(name, innerValues);
+
+        btn = this.builds.boxing(btn);
+        btn.classList.add('videoPlayer-component', 'btn');
+        btn.style.width = 'min-content';
+
+        return btn;
+    };
+
+
+    /**
      * Play/Pause button
      */
 
     playButton() {
-        var btn = this.builds.buttonPattern(
+        var btn = this.btnPattern (
             this.nameBtnPattern('play'),
             ['Play', 'Pause']
         );
-
-        btn = this.builds.boxing(btn);
-        btn.classList.add('videoPlayer-component', 'btn');
 
         // set api
         btn.addEventListener('click', function () {

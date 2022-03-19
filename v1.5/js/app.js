@@ -5,12 +5,15 @@ var video = document.querySelector('video#video-hls');
 /** @var {String} source */
 var source = '../../video/2/hls_master.m3u8';
 
-export default window.addEventListener('load', function () {
+window.addEventListener('load', function () {
     const videoController = new VideoControllers(video);
 
     globalThis.__videoController = videoController;
     globalThis.__video = video;
+
+    videoController.controls(['play'])
 });
+
 
 try {
     

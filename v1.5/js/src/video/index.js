@@ -18,9 +18,6 @@ export default class VideoControllers extends VideoControllerElements
 
         this.prepareVideoContainer();
         this.loadEvents();
-
-        // buttons (test version)
-        this.playButton();
     }
 
 
@@ -58,8 +55,32 @@ export default class VideoControllers extends VideoControllerElements
 
     prepareVideoContainer() {
         this.box = this.builds.boxing(this.video, true);
+
         this.box.className = "player-video";
         this.box.style.minWidth = 'min-content';
+    }
+
+
+    /**
+     * Add controls to the video
+     * 
+     * @param {String|Array} controls
+     */
+
+    controls(controls) {
+        if (typeof controls == 'string') {
+            controls = [controls];
+        }
+
+        const chooseControl = (control) => {
+            switch (control) {
+                case 'play': return this.playButton();
+                // 
+                default: return void 0;
+            }
+        };
+
+        controls.forEach(a => chooseControl(a));
     }
 
 }
