@@ -29,8 +29,11 @@ export default class VideoControllerElements
      */
 
     constructor() {
-        /** * Load entire classes and build dependencies. */
+        /** Load entire classes and build dependencies. */
         this.builds = Builds;
+        
+        /** Put all videoPlayer components */
+        this.components = this.builds.elementPattern('div', ['components-box', 'components'], 'videoPlayer');
     }
 
 
@@ -40,6 +43,18 @@ export default class VideoControllerElements
      */
 
     nameBtnPattern = (name) => [["videoPlayer", name].join('-'), name];
+
+
+    /**
+     * Range (slide) pattern
+     * 
+     * @param {String} name the name of the range
+     * @param {[Number, Number]} values the values (step and default).10px
+     * 
+     * @returns {HTMLInputElement}
+     */
+
+    slidePattern = (name, ...values) => this.builds.rangePattern(this.nameBtnPattern(name), values[0], values[1]);
 
 
     /**
@@ -78,13 +93,27 @@ export default class VideoControllerElements
             __video[method]();
         });
 
-        // change content
+        // change content automatically
         this.video.addEventListener('play', () => replaceInnerValue(btn));
         this.video.addEventListener('pause', () => replaceInnerValue(btn));
 
         replaceInnerValue(btn);
 
-        return this.box.appendChild(btn);
+        return this.components.appendChild(btn);
+    }
+
+
+    /**
+     * Time addons (scroll and display)
+     */
+
+    timeAddons() {
+        var slide = this.slidePattern('time', 10e-4);
+        var box = this.builds.boxing(slide);
+        
+        return this.components.appendChild(
+            this.builds.boxing(slide)
+        );
     }
 
 }

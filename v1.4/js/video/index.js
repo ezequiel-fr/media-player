@@ -106,7 +106,7 @@ export default class VideoControllers
      * choose the moment we will see in video.
      */
 
-     timeAPI() {
+    timeAPI() {
         const box1 = this.timeSlide();
         const box2 = boxing(this.timeDisplayer(box1));
 

@@ -11,7 +11,7 @@ window.addEventListener('load', function () {
     globalThis.__videoController = videoController;
     globalThis.__video = video;
 
-    videoController.controls(['play'])
+    videoController.controls(['play', 'time']);
 });
 
 

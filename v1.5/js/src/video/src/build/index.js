@@ -35,17 +35,15 @@ const Builds = ({
      * @returns {HTMLElement}
      */
 
-    elementPattern: (element, name, prefix = null) => {
+    elementPattern: (element, name = [], prefix = null) => {
         const el = document.createElement(element);
 
-        el.classList.add(name[0]);
-
-        if (null === prefix) {
-            el.id = name[1];
-        } else {
-            el.classList.add(prefix);
-            el.id = [prefix, name[1]].join('-');
+        if (name.length === 2) {
+            el.classList.add(name[0]);
+            el.id = (null === prefix) ? name[1] : [prefix, name[1]].join('-');
         }
+
+        if (null !== prefix) el.classList.add(prefix);
 
         return el;
     },
