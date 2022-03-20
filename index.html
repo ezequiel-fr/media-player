@@ -71,6 +71,8 @@
         }
     </style>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 </head>
 <body>
 
@@ -78,9 +80,8 @@
         <h1>Media Player</h1>
 
         <div class="desc">
-            Media-player is a mix of all the tests I do with the <i>HTTP Live Server</i> (HLS) method.<br>
-            
-            For this, I use the <a href="#">Hls.js</a> librairy.<br>
+            Media-player is a mix of all the tests I do with the <i>HTTP Live Server</i> (HLS) method.
+            So, for this, I use the <a href="#">Hls.js</a> librairy.<br>
             
             Also, you can see all my tests here :
             <a href="http://github.com/TheRedMineTheRedMine/media-player" target="_blank" rel="noopener noreferrer">http://github.com/TheRedMineTheRedMine/media-player</a><br>
@@ -122,20 +123,39 @@
         </div>
 
         <div class="content">
-            <iframe src="./v0.1/" frameborder="0"></iframe>
+            <iframe src="" frameborder="0">test</iframe>
         </div>
     </main>
 
     <footer>
         By <b><i><a href="https://github.com/TheRedMineTheRedMine" target="_blank">Ezequiel FRIDEL</a></i></b> - &copy; Libre de droits
     </footer>
-
-    <script>
+    
+    <script type="text/javascript" language="JavaScript">
         const select = document.querySelector('.choice select');
+        const iframe = document.querySelector('.content iframe');
 
         const getIndex = () => {
-            const index = select[select.selectedIndex];
-            console.log(index.innerHTML);
+            var index = select[select.selectedIndex],
+                url = `./${index.innerHTML}/index.html`;
+
+            $.ajax({
+                url: url,
+                type: 'HEAD',
+                error: () => {
+                    url = `./${index.innerHTML}/public/index.html`;
+
+                    $.ajax({
+                        url: url,
+                        type: 'HEAD',
+                        error: () => {
+                            console.log('file not exists');
+                        },
+                        success: () => iframe.src = url,
+                    });
+                },
+                success: () => iframe.src = url,
+            });
         };
 
         select.addEventListener('change', getIndex);
