@@ -18,7 +18,7 @@ export function setCookie (name, value) {
  * Get cookie value
  * 
  * @param {String} name the name of the cookie
- * @returns {null} response
+ * @returns {String|null} response
  */
 
 export function getCookie (name) {
