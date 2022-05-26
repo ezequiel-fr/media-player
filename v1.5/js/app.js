@@ -11,14 +11,14 @@ window.addEventListener('load', function () {
     globalThis.__videoController = videoController;
     globalThis.__video = video;
 
-    videoController.controls(['play', 'time']);
+    videoController.controls();
 });
 
 
 try {
     
     /** @module Hls */
-    Hls = globalThis.Hls;
+    let Hls = globalThis.Hls;
 
     if (Hls.isSupported()) {
         var player = new Hls();

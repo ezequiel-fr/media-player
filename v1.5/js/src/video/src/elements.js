@@ -7,9 +7,7 @@ import Builds from './build/index.js';
  */
 
 const replaceInnerValue = (el) => {
-    if (el.hasChildNodes() && el.firstChild == el.lastChild) {
-        el = el.firstChild;
-    }
+    if (el.hasChildNodes() && el.firstChild == el.lastChild) el = el.firstChild;
 
     const oldValue = el.innerHTML;
     
@@ -19,10 +17,25 @@ const replaceInnerValue = (el) => {
 
 
 /**
+ * Update and return time (of an input of type range or in text value)
+ * 
+ * @param {HTMLVideoElement} video the video.
+ * @param {HTMLElement} el the element.
+ * 
+ * @return {String|Any}
+ */
+
+const updateTime = (video, el) => {
+    if (el instanceof HTMLInputElement)
+        el.value = video.currentTime / video.duration * 100;
+};
+
+
+/**
  * VideoControllerElements
  */
 
-export default class VideoControllerElements
+class VideoControllerElements
 {
     /**
      * Construct
@@ -108,12 +121,21 @@ export default class VideoControllerElements
      */
 
     timeAddons() {
-        var slide = this.slidePattern('time', 10e-4);
-        var box = this.builds.boxing(slide);
-        
-        return this.components.appendChild(
-            this.builds.boxing(slide)
-        );
+        var slide = this.slidePattern('time', 10e-4),
+            box = this.builds.boxing(slide);
+
+        const updateSeekbar = () => this.video.currentTime = slide.value * this.video.duration / 100;
+
+        slide.addEventListener('change', updateSeekbar);
+        slide.addEventListener('click', updateSeekbar);
+        slide.addEventListener('drag', updateSeekbar);
+        slide.addEventListener('dragstart', updateSeekbar);
+
+        this.video.addEventListener('timeupdate', () => updateTime(this.video, slide));
+
+        return this.components.appendChild(box);
     }
 
 }
+
+export default VideoControllerElements;

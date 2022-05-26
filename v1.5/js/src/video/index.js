@@ -1,8 +1,9 @@
 import VideoControllerElements from './src/elements.js';
 import videoControllerEvents from './src/events/index.js';
 
-export default class VideoControllers extends VideoControllerElements
+class VideoControllers extends VideoControllerElements
 {
+
     /**
      * Add controllers to a video.
      * 
@@ -88,9 +89,10 @@ export default class VideoControllers extends VideoControllerElements
      * @param {String|Array} controls
      */
 
-    controls(controls) {
+    controls(controls = ['play', 'time']) {
         if (typeof controls == 'string') {
             controls = [controls];
+
         }
 
         /**
@@ -111,3 +113,5 @@ export default class VideoControllers extends VideoControllerElements
     }
 
 }
+
+export default VideoControllers;
