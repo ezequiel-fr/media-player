@@ -107,7 +107,7 @@ dist
 .vscode/
 
 # Video files (only locale).
-*.ts
+/video/*/*.ts
 
 # favicon (generated only for live server) => empty file
 favicon.ico
