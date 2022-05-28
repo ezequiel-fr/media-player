@@ -1,12 +1,6 @@
 "use strict";
-/**
- * The video controller librairie is an open source librairie
- * made by TheRedMineTheRedMine.
- *
- * @class VideoController
- * @TheRedMineTheRedMine <theredminedu51@gmail.com>
- */
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
+export const __esModule = true;
 var VideoController = /** @class */ (function () {
     /**
      * Initialize the player.
@@ -34,8 +28,24 @@ var VideoController = /** @class */ (function () {
          * @returns {void} anything.
          */
         this.authorizeControls = function () { return clearInterval(_this._removeControls); };
-        this.video = video;
+        this.video = video; // Init video
+        this.removeControls(); // Remove controls
     }
+    /**
+     * Choose and init video controllers.
+     * If empty values, the programm will choose basics
+     * controls (play/pause button, display time, ...).
+     *
+     */
+    VideoController.prototype.controls = function (_a) {
+        var _b = _a.playButton, playButton = _b === void 0 ? true : _b, _c = _a.displayTime, displayTime = _c === void 0 ? true : _c;
+        if (playButton) {
+            console.log("apply play button");
+        }
+        if (displayTime) {
+            console.log("apply time display");
+        }
+    };
     return VideoController;
 }());
 exports["default"] = VideoController;

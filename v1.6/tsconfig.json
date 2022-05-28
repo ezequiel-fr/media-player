@@ -1,0 +1,13 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "module": "CommonJS",
+        "target": "ES5",
+        "noImplicitAny": false,
+        "sourceMap": true,
+    },
+    "exclude": [
+        "node_modules",
+        "video"
+    ]
+}

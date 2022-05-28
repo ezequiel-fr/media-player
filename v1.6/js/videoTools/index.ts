@@ -22,7 +22,8 @@ class VideoController {
      */
 
     public constructor(video:HTMLVideoElement) {
-        this.video = video;
+        this.video = video; // Init video
+        this.removeControls(); // Remove controls
     }
 
 
@@ -50,6 +51,32 @@ class VideoController {
      */
 
     public authorizeControls = (): void => clearInterval(this._removeControls);
+
+
+    /**
+     * Choose and init video controllers.
+     * If empty values, the programm will choose basics
+     * controls (play/pause button, display time, ...).
+     * 
+     */
+
+    public controls (
+        {
+            playButton = true,
+            displayTime = true
+        } : {
+            playButton: boolean,
+            displayTime: boolean
+        }
+    ): void {
+        if (playButton) {
+            console.log("apply play button");
+        }
+
+        if (displayTime) {
+            console.log("apply time display");
+        }
+    }
 
 }
 
