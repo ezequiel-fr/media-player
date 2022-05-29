@@ -1,3 +1,6 @@
+import { ControlsOptions, Controllers as ControllersType } from "./@types/VideoController";
+import Controllers from "./controllers/index.js";
+
 
 /**
  * The video controller librairie is an open source librairie
@@ -12,8 +15,17 @@ class VideoController {
     /** @var {HTMLVideoElement} video */
     public video: HTMLVideoElement;
 
+    /** @var {ControlsOptions} defaultOptions */
+    protected defaultOptions: ControlsOptions = {
+        playButton: true,
+        displayTime: true
+    };
+
     /** @var {number} _removeControls */
     private _removeControls: number;
+
+    /** @var {ControllersType} controllers */
+    protected controllers: ControllersType;
 
     /**
      * Initialize the player.
@@ -21,9 +33,11 @@ class VideoController {
      * @param {HTMLVideoElement} video the video.
      */
 
-    public constructor(video:HTMLVideoElement) {
+    public constructor(video: HTMLVideoElement) {
         this.video = video; // Init video
         this.removeControls(); // Remove controls
+
+        this.controllers = Controllers;
     }
 
 
@@ -55,28 +69,28 @@ class VideoController {
 
     /**
      * Choose and init video controllers.
-     * If empty values, the programm will choose basics
+     * If empty values, the program will choose basics
      * controls (play/pause button, display time, ...).
      * 
+     * @param {ControlsOptions} params a customizable object.
+     * @returns {void}
      */
 
-    public controls (
-        {
-            playButton = true,
-            displayTime = true
-        } : {
-            playButton: boolean,
-            displayTime: boolean
-        }
-    ): void {
-        if (playButton) {
-            console.log("apply play button");
-        }
-
-        if (displayTime) {
-            console.log("apply time display");
-        }
+    public controls (params: ControlsOptions = this.defaultOptions): void {
+        let _params = Object.keys(params);
+        
+        _params.forEach(a => (params[a] || typeof a == undefined) && this.chooseControl(a));
     }
+
+
+    private chooseControl (control: string) {
+        switch (control) {
+            case 'playButton': return this.controllers.playButton(this.video);
+            case 'displayTime': return "this.controllers.timeAddons()";
+            // 
+            default: return void 0;
+        }
+    };
 
 }
 

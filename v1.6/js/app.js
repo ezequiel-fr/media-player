@@ -1,17 +1,15 @@
-"use strict";
-exports.__esModule = true;
-var index_js_1 = require("./videoTools/index.js");
+import VideoController from './videoTools/index.js';
 /** @var {HTMLVideoElement} video current video to apply changes */
 var video = document.querySelector('video#video-hls');
 /** @var {String} source THe video source */
 var source = "../video/hls_master.m3u8";
 window.addEventListener('load', function () {
-    var videoController = new index_js_1["default"](video);
-    // 
+    const videoController = new VideoController(video);
+    videoController.controls();
 });
 try {
     /** @module Hls */
-    var Hls = globalThis.Hls;
+    let Hls = globalThis.Hls;
     if (Hls.isSupported()) {
         var player = new Hls();
         player.loadSource(source);
@@ -28,3 +26,4 @@ try {
 catch (error) {
     console.error(error);
 }
+//# sourceMappingURL=app.js.map

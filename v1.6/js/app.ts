@@ -8,7 +8,7 @@ var source: string = "../video/hls_master.m3u8";
 
 window.addEventListener('load', function () {
     const videoController = new VideoController(video);
-    // 
+    videoController.controls();
 });
 
 try {
