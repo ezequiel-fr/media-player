@@ -13,7 +13,7 @@ export function PlayButton(video) {
     btn = Builds.boxing(btn);
     btn.classList.add('videoPlayer-component', 'btn');
     btn.style.width = 'min-content';
-    // set API
+    // set events
     btn.addEventListener('click', function () {
         const method = video.paused ? 'play' : 'pause';
         btn.dataset.status = method;

@@ -9,7 +9,7 @@ const replaceInnerValue = (el: any) => {
     el.dataset.alternateValue = oldValue;
 }
 
-export function PlayButton (video: HTMLVideoElement) {
+export function PlayButton (video: HTMLVideoElement): void {
     // create button
     var btn: HTMLElement = Builds.buttonPattern(["videoPlayer-play", 'play'], ['Play', 'Pause']);
 
@@ -18,7 +18,7 @@ export function PlayButton (video: HTMLVideoElement) {
     btn.classList.add('videoPlayer-component', 'btn');
     btn.style.width = 'min-content';
 
-    // set API
+    // set events
     btn.addEventListener('click', function () {
         const method = video.paused ? 'play' : 'pause';
 

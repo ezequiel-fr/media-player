@@ -4,7 +4,17 @@ export interface ControlsOptions {
     displayTime?: boolean;
 };
 
+export interface ControllerEvent extends Object {
+    id: number;
+    type: "keyup" | "keydown";
+}
+
+interface ControllersEvents {
+    addKeyEvents(): void
+}
+
 export interface Controllers {
-    playButton?: any;
-    timeAddons?: any;
+    events?: ControllersEvents;
+    playButton(video: HTMLVideoElement): void;
+    timeAddons(): void;
 };

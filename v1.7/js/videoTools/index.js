@@ -49,16 +49,23 @@ class VideoController {
      * @param {ControlsOptions} params a customizable object.
      * @returns {void}
      */
-    controls(params = this.defaultOptions) {
+    controls(params = {}) {
         let _params = Object.keys(params);
         _params.forEach(a => (params[a] || typeof a == undefined) && this.chooseControl(a));
     }
+    defaultControls() {
+        this.controls(this.defaultOptions);
+    }
     chooseControl(control) {
         switch (control) {
-            case 'playButton': return this.controllers.playButton(this.video);
-            case 'displayTime': return this.controllers.timeAddons();
-            // 
-            default: return void 0;
+            case 'playButton':
+                // return console.log('play');
+                return this.controllers[control](this.video);
+            case 'displayTime':
+                // return console.log('time');
+                return this.controllers.timeAddons();
+            default:
+                return void 0;
         }
     }
     ;

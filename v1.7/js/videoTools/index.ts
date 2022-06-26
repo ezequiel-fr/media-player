@@ -1,4 +1,3 @@
-import { ControlsOptions, Controllers as ControllersType } from "./@types/VideoController";
 import Controllers from "./controllers/index.js";
 
 
@@ -17,7 +16,7 @@ class VideoController {
 
 
     /** @var {ControlsOptions} defaultOptions */
-    protected defaultOptions: ControlsOptions = {
+    protected defaultOptions = {
         playButton: true,
         displayTime: true
     };
@@ -28,7 +27,7 @@ class VideoController {
 
 
     /** @var {ControllersType} controllers */
-    protected controllers: ControllersType;
+    protected controllers;
 
 
     /**
@@ -80,19 +79,30 @@ class VideoController {
      * @returns {void}
      */
 
-    public controls (params: ControlsOptions = this.defaultOptions): void {
+    public controls (params = {}): void {
         let _params = Object.keys(params);
         
         _params.forEach(a => (params[a] || typeof a == undefined) && this.chooseControl(a));
     }
 
 
+    public defaultControls(): void {
+        this.controls(this.defaultOptions);
+    }
+
+
     private chooseControl (control: string) {
         switch (control) {
-            case 'playButton': return this.controllers.playButton(this.video);
-            case 'displayTime': return this.controllers.timeAddons();
-            // 
-            default: return void 0;
+            case 'playButton':
+                // return console.log('play');
+                return this.controllers[control](this.video);
+
+            case 'displayTime':
+                // return console.log('time');
+                return this.controllers.timeAddons();
+
+            default:
+                return void 0;
         }
     };
 
